@@ -28,7 +28,7 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
   void _onSauceChanged (Sauce? value) {
     setState(() {
       _sauce = value;
-      _cost;
+      _calcCost();
     });
   }
 
@@ -40,6 +40,20 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
 
     if (_pizzaSize == 20) _cost -= 200;
     if (_pizzaSize == 40) _cost += 200;
+
+    switch (_sauce) {
+      case Sauce.spicy:
+        break;
+      case Sauce.sour:
+        _cost += 20;
+        break;
+      case Sauce.cheesy:
+        _cost += 30;
+        break;
+      default:
+        _sauce = Sauce.spicy;
+        _cost += 0;
+    }
 
     return _cost;
   }
