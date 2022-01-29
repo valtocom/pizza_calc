@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sliding_switch/sliding_switch.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
@@ -60,29 +59,29 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+
+    return Scaffold(
           body: Container(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20),
             child: SingleChildScrollView(
               child: Column(
                 children: [
                   Container(
                       alignment: Alignment.centerRight,
-                      child: Image(image: AssetImage('assets/pizza.png')),
+                      child: const Image(image: AssetImage('assets/pizza.png')),
                   ),
 
-                  SizedBox(height: 35,),
+                  const SizedBox(height: 35,),
                   Text('Калькулятор пиццы',
-                  style: TextStyle(fontSize: 30),
+                    style: Theme.of(context).textTheme.headline2,
                   ),
 
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   Text('Выберите параметры:',
-                    style: TextStyle(fontSize: 16),
+                    style: Theme.of(context).textTheme.headline4,
                   ),
 
-                  SizedBox(height: 35,),
+                  const SizedBox(height: 35,),
 
                   SlidingSwitch(
                     value: false,
@@ -103,20 +102,20 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
                     colorOn : const Color(0xffFFFFFF),
                     colorOff : const Color(0xffFFFFFF),
                     background : const Color(0xffe4e5eb),
-                    buttonColor : const Color(0xff0079D0),
+                    buttonColor : Colors.pink,
                     inactiveColor : const Color(0xff636f7b),
                   ),
 
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
 
                   Container(
                     alignment: Alignment.bottomLeft,
                     child: Text('Размер:',
-                      style: TextStyle(fontSize: 20),
+                      style: Theme.of(context).textTheme.headline6,
                     ),
                   ),
 
-                  SizedBox(height: 20,),
+                  const SizedBox(height: 20,),
 
                   SizedBox(
                     child: SfSlider(
@@ -139,18 +138,19 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
                     width: 400,
                   ),
 
-                  SizedBox(height: 30,),
+                  const SizedBox(height: 30,),
 
 
 
                     Container(
                       alignment: Alignment.bottomLeft,
                       child: Text('Соус:',
-                        style: TextStyle(fontSize: 20),
+                        style: Theme.of(context).textTheme.headline6,
                       ),
                     ),
 
                     RadioListTile<Sauce>(
+                      activeColor: Theme.of(context).colorScheme.onPrimary,
                       title: const Text('Острый'),
                       value: Sauce.spicy,
                       groupValue: _sauce,
@@ -158,6 +158,7 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
                     ),
 
                     RadioListTile<Sauce>(
+                      activeColor: Theme.of(context).colorScheme.onPrimary,
                       title: const Text('Кисло-сладкий'),
                       value: Sauce.sour,
                       groupValue: _sauce,
@@ -165,22 +166,23 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
                     ),
 
                     RadioListTile<Sauce>(
+                      activeColor: Theme.of(context).colorScheme.onPrimary,
                       title: const Text('Сырный'),
                       value: Sauce.cheesy,
                       groupValue: _sauce,
                       onChanged: _onSauceChanged,
                     ),
 
-                    Container(
+
+                    SizedBox(
                       width: double.infinity,
                       height: 60,
                       child: Card(
-                        color: Color(0xFFECEFF1),
 
                         child: Row(
-                          children: [
+                          children: <Widget>[
 
-                            Expanded (child:
+                            const Expanded (child:
                             SizedBox(
                               height: 45,
                               child: Image(image: AssetImage('assets/cheese-logo.png')),
@@ -188,11 +190,13 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
                             ),
 
                             Text('Дополнительный сыр',
-                                style: TextStyle(fontSize: 18),
+                                style: Theme.of(context).textTheme.bodyText2,
                               ),
 
                             Expanded(
+
                               child: Switch(
+                                    activeColor: Theme.of(context).colorScheme.primary,
                                     value: _addCheese,
                                     onChanged: (val) {
                                       setState(() {
@@ -212,32 +216,30 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
                     Container(
                       alignment: Alignment.bottomLeft,
                       child: Text('Стоимость:',
-                        style: TextStyle(fontSize: 20),
+                        style: Theme.of(context).textTheme.headline6,
                       ),
                     ),
 
-                    Container(
+                    SizedBox(
                       width: double.infinity,
                       height: 50,
                       child: Card(
                         child: Text('$_cost руб.',
-                          style: TextStyle(fontSize: 30),
+                          style: Theme.of(context).textTheme.headline2,
                           textAlign: TextAlign.center,
                         ),
-                        color: Color(0xFFECEFF1),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
                     ),
 
-                    SizedBox(height: 35,),
+                    const SizedBox(height: 35,),
 
                     SizedBox(width: 154, height: 42, child:
                     ElevatedButton(onPressed: () {},
-                      child: Text('Заказать'),
+                      child: Text('Заказать', style: Theme.of(context).textTheme.bodyText2,),
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xFF0079D0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(36.0),
                         ),
@@ -250,7 +252,6 @@ class _PizzaCalcScreenState extends State<PizzaCalcScreen> {
               ),
             ),
           ),
-      ),
     );
   }
 }
